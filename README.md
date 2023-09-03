@@ -1,3 +1,6 @@
+# Mots clés
+`Réseaux Eucliens`, `Cryptographie`, `Cryptosystème du sac à dos`, `Théorème de Copersmith`
+
 # Discovering PARI/GP
 
 ## [x] Introduction to PARI/GP
