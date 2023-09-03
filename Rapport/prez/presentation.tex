@@ -1,0 +1,297 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\usetheme{Warsaw}
+\useoutertheme{sidebar}
+
+\title{TD2-Corps finis}
+\author{Thierno Mamoudou SABALY}
+\institute{Master 1 - Transmission des Données et Sécurité de l'Information\\Option Mathématiques-Cryptographie}
+\date{04 janvier 2022}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+  \frametitle{Sommaire}
+  \tableofcontents[currentsection, hideothersubsections, pausesubsections]
+  \end{frame} 
+}
+
+\begin{document}
+    \begin{frame}
+        \frametitle{\textcolor{white}{Université Cheikh Anta Diop de Dakar}}
+        \titlepage
+    \end{frame}
+
+    \section{Exercice 01}
+	\begin{frame}{Exercice 01}{Question 1}
+        \begin{alertblock}{Question 1}
+            Montrer que $X^2 + X + 1$ est le seul polynôme unitaire irréductible de dégré 2 sur $\mathbb{F}_2$
+        \end{alertblock}
+        \begin{exampleblock}{Solution}
+            Les autres polynômes unitaires de dégré 2 sur $\mathbb{F}_2$ sont : $X^2 + X$, $X^2 + 1$ et $X^2$.\pause
+            Pour chacun d'eux, nous avons bien une factorisation. En effet : 
+            \begin{itemize}
+                \item $X^2 + X = X(X + 1)$
+                \item $X^2 + 1 = (X + 1)(X+1)$
+                \item $X^2 = X \times X$
+            \end{itemize} \pause
+            Alors il ne reste plus qu'à vérifier que $f(X) = X^2 + X + 1$ est irreductible sur $\mathbb{F}_2$, pour cela par l'absurde, supposons que f soit réductible.
+        \end{exampleblock}
+	\end{frame}
+    \begin{frame}{Exercice 01}{Question 01}
+        \begin{exampleblock}{}
+            Alors $f(X) = (X + a)(X + b); \text{ } a,b \in \mathbb{F}_2$. Donc 0 ou 1 est solution de $f(X) = 0$ or on a
+            $f(0) = f(1) = 1$ ce qui est contradictoire. Donc $f$ est irréductible.
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}{Exercice 01}{Question 02}
+        \begin{alertblock}{Question 02}
+            Montrer que le polynôme $X^4 + 1$ est irréductible sur $\mathbb{Q}$.
+        \end{alertblock}
+        \begin{exampleblock}{Solution}
+            Soit $P(X) = X^4 + 1$. Par l'absurbe supposons que $P$ est réductible sur $\mathbb{Q}$ alors $P(X) = Q(X)T(X)$ avec $Q, T \in \mathbb{Q}[X]$. On a soit 
+             $deg(Q) = 1 \text{ et } deg(T) = 3$ ou $deg(Q) = 2 \text{ et } deg(T) = 2$. \pause
+             \begin{enumerate}
+                 \item $deg(Q) = 1 \implies \exists \frac{a}{b} \in \mathbb{Q} / P(\frac{a}{b}) = 0 \implies a^4 = - b^4 < 0$ (impossible) \pause
+                 \item $deg(Q) = 2$ alors on peut écrire $Q(X) = X^2 + \alpha X + 1$ et $T(X) = X^2 + \beta X + 1$ avec $\alpha, \beta \in \mathbb{Q}$
+                        $Q(X)T(X) = X^4 + (\alpha + \beta)X^3 + (2 + \alpha\beta)X^2 + (\alpha + \beta)X + 1$. Par identification, on a :  
+            \end{enumerate}
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}{Exercice 01}{Question 02}
+        \begin{exampleblock}{}
+            $\alpha + \beta = 0$ et $2 + \alpha\beta = 0 \implies 2 - \alpha^2 = 0 \implies \alpha^2 = 2$. Cette dernière équation n'a pas de solution dans 
+            $\mathbb{Q}$.\\ \pause
+            
+            Alors aucune décomposition de $X^4 + 1$ n'est possible dans $\mathbb{Q}$, d'où $X^4 + 1$ est irréductible dans $\mathbb{Q}$.
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}{exercice 01}{Question 03}
+        \begin{exampleblock}{}
+            \begin{itemize}
+                \item [(ii)] Si $X^4 + 1 = (X^2 + \alpha X + a)(X^2 + \beta X + a^{-1})$ avec $\alpha, a \in \maathbb{F}_{p}$ alors on a
+                $X^4 + 1  = X^4 + (\alpha + \beta)X^3 + (a + a^{-1} + \alpha\beta)X^2 + (a^{-1}\alpha + a\beta)X + 1$;\pause 
+                Et donc par identification, 
+                \[
+                    \left\{
+                    \begin{array}{}
+                        \alpha + \beta = 0 &
+                        a + a^{-1} + \alpha\beta = 0 & 
+                        a^{-1}\alpha + a\beta = 0
+                    \end{array}
+                    \right.
+                \]
+            \end{itemize}
+             
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}{exercice 01}{Question 03}
+        \begin{exampleblock}{}
+            On a alors,
+            \[
+                \left\{
+                \begin{array}{}
+                    \beta = -\alpha &
+                    \alpha^2 = a + a^{-1} & 
+                    \alpha(a^{-1} - a) = 0
+                \end{array}
+                \right.
+            \] \pause
+            $\implies \alpha = 0 \text{ ou } a = a^{-1}$. Traitons séparément ces 2 cas.\\ \pause
+            1. $\alpha = 0 \implies a^{2} = -1 \implies -1 \text{ est un résidu quadratique }$. Par la formule de Legendre, on a $(\frac{-1}{p}) = 1$
+            or $(\frac{-1}{p}) = (-1)^\frac{p-1}{2} = 1 \Leftrightarrow p = 8k + 5$.\\ \pause
+            \textcolor{blue}{Si $p=8k+5, X^4 + 1 = (X^2 + a)(X^2 - a) \text{ avec } a^2 = -1$}
+            
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}
+        \begin{exampleblock}{}
+            2. $a = a^{-1} \implies \alpha^2 = 2a$. \pause D'autre part $a = a^{-1} \implies a = 1 \text{ ou } a = p-1 = -1$
+            \pause
+            \begin{itemize}
+                \item Si $p=8k + 3$ alors par la formule de Legendre, $(\frac{2}{p}) = (-1)^{\frac{p^2 - 1}{8}} = -1 \implies 2$ n'est pas résidu quadratique. On choisi $a$ tel que $2a$ soit un résidu quadratique, donc
+                $(\frac{2a}{p}) = (\frac{2}{p})(\frac{a}{p}) = -1\times(\frac{a}{p}) \implies (\frac{a}{p}) = -1 \implies a=-1$.\\
+                \pause \textcolor{blue}{Si $p=8k+3, X^4 + 1 = (X^2 + \alpha X -1)(X^2 - \alpha X - 1)$ avec $\alpha^2 = -2$}.
+                \pause
+                \item Si $p=8k + 7$ alors par la formule de Legendre, 2 est un résidu quadratique, il suffit alors de prendre $a=1$. Et on a \\
+                \pause \textcolor{blue}{Si $p=8k+7, X^4 + 1 = (X^2 + \alpha X + 1)(X^2 - \alpha X + 1)$ avec $\alpha^2 = 2$ }.
+            \end{itemize} \pause
+
+            D'où pour tout nombre premier $p, X^4 + 1$ est réductible sur $\mathbb{F}_{p}$.
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}{exercice 01}{Question 04}
+        \begin{alertblock}{Question 04}
+            Déterminer tous les polynômes irréductibles unitaires de degré 3 sur $\mathbb{F}_2$.
+        \end{alertblock}
+        \begin{exampleblock}{Solution}
+            Il est plus aisé de lister les réductibles et ensuite en déduire les irréductibles.\\
+            Les réductibles \\ \pause
+            \begin{itemize}
+                \item $0$ est racine : $X^3,  X(X^2 + X+1) = X^3+X^2+X$ \pause
+                \item $0$ et $1$ sont racines : $X(X^2 + 1) = X^3 + X, X(X^2 + X) = X^3 + X^2$ \pause
+                \item $1$ est racine : $(X+1)(X^2 + 1) = X^3 + X^2 + X + 1, (X+1)(X^2 + X + 1) = X^3 + 1$ \pause
+            \end{itemize}\pause 
+            Les irréductibles sont alors : $X^3 + X + 1 \text{ et } X^3 + X^2 + 1$.
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}{Exercice 01}{Question 05}
+        \begin{alertblock}{Question 05}
+            Déterminer tous les polynômes irréductibles unitaires de degré 2 sur $\mathbb{F}_3$.
+        \end{alertblock}
+        \begin{exampleblock}{Solution}
+            Un polynôme réductible de degré 2 et unitaire s'écrit $(X+a)(X+b) = X^2 + (a+b)X + ab; a,b \in \mathbb{F}_3$
+            Ce sont alors : \pause
+            \begin{itemize}
+                \item $a=0, b=0 \implies X^2$ \pause 
+                \item $a=0, b=1 \text{ ou } a=1, b=0 \implies X^2 + X$ \pause
+                \item $a=0, b=2 \text{ ou } a=2, b=0 \implies X^2 + 2X$ \pause
+                \item $a=1, b=1 \implies X^2 + 2X + 1$ \pause
+                \item $a=1, b=2 \text{ ou } a=2, b=1 \implies X^2 + 2$ \pause
+                \item $a=2, b=2 \implies X^2 + X + 1$ \pause
+            \end{itemize} \pause
+            Ainsi les irréductibles sont : $X^2 + 1 \text{ , } X^2 + X + 2$ et $X^2 + 2X + 2$. 
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}{Exercice 01}{Question 06}
+        \begin{alertblock}{Question 06}
+            Les polynômes $A(X) = X^3 + X + 1 \text{ et } B(X) = X^3 + X^2 + 1$, sont-ils irréductibles sur $\mathbb{F}_2$.
+        \end{alertblock}
+        \begin{exampleblock}{Solution}
+            $A(X)$ et $B(X)$ sont irréductibles sur $\mathbb{F}_2$. cf. Question 04.
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}{Exercice 01}{Question 07}
+        \begin{alertblock}{Question 07}
+            Lister les éléments de $\mathbb{F}_2[X]/(A)$. En déduire ses tables d'addition et de multiplication correspondantes.
+        \end{alertblock}
+        \begin{exampleblock}{Solution}
+            \begin{itemize}
+                Soit $\alpha = X mod(A(x))$, on a : $\alpha^3 + \alpha + 1 = 0 \implies \alpha^3 = \alpha + 1$; 
+                On a : \pause
+                \begin{tabular}{c|c|c|c}
+                    Exponentielle & polynomiale & binaire & décimal \\
+                    \hline
+                    $\alpha$ & $\alpha$ & 010 & 2 \\
+                    \hline
+                    $\alpha^2$ & $\alpha^2$ & 100 & 4 \\
+                    \hline
+                    $\alpha^3$ & $\alpha + 1 $ & 011 & 3 \\
+                    \hline
+                    $\alpha^4$ & $\alpha^2 + \alpha $ & 110 & 6 \\
+                    \hline
+                    $\alpha^5$ & $\alpha^2 + \alpha + 1 $ & 111 & 7 \\
+                    \hline
+                    $\alpha^6$ & $\alpha^2 + 1 $ & 101 & 5 \\
+                    \hline
+                    $\alpha^7$ & $1$ & 001 & 1 \\
+                    \hline
+                \end{tabular}
+            \end{itemize}
+        \end{exampleblock}
+    \end{frame}
+    
+
+    \section{Exercice 02}
+    \section{Exercice 03}
+ 
+    \section{Exercice 04}
+  
+
+    \section{Exercice 05}
+    \section{Exercice 06}
+    \section{Exercice 07}
+
+
+        \begin{frame}{Exercice 07}{Question 02}
+            \begin{alertblock}{Question 02}
+                Déterminer le cardinale de $\mathbb{F}$.
+            \end{alertblock}
+            \begin{exampleblock}{Solution}
+                $\mathbb{F} = \{ a_0 + a_1\alpha + ... + a_{m-1}\alpha^{m-1}, a_i \in \mathbb{F}\} \backsimeq \{(a_i)_{0\le i \le m-1}, a_i \in \mathbb{F}_p\}$. On peut voir cet ensemble comme l'ensemble des m-uplets de $\mathbb{F}_p$.
+                Donc son cardinale c'est le nombre d'uplets possibles, c'est-à-dire $p^m$.\\
+                $card(\mathbb{F}) = p^m$.
+            \end{exampleblock}
+        \end{frame}
+
+        \begin{frame}{Exercice 07}{Question 03}
+            \begin{alertblock}{Question 03}
+                Montrer que $\mathbb{F}$, muni de l'addition $+$ des polynômes et de $\cdot$ multiplication de polynômes modulo $g$, est un corps.
+            \end{alertblock}
+            \begin{exampleblock}{Solution}
+                \begin{itemize}
+                    \item La somme de deux polynômes de degré inférieur ou égale à m-1 à coefficients dans $\mathbb{F}_p$ est un polynôme de degré inférieur ou égale à m-1 et à coefficients dans $\mathbb{F}_p$ (car $\mathbb{F}_p$ est un corps). Stabilité par somme \pause
+                    \item Le produit module $g$ de deux polynômes de degré inférieur ou égale à m-1 est aussi un polynôme de degré inférieur ou égale à m-1 et à coefficients dans $\mathbb{F}_p$. Stabilité par produit \pause
+                    \item Soit $P  \in \mathbb{F}_p[X]$, alors comme $g$ irréductible alors soit $pgcd(P,g) = g$ ou $pgcd(P,g) = 1 \implies P = 0$ ou $P$ inversible. Or tout élement $P$ non nul de $\mathbb{F}$ est de degré inférieur ou égale à $deg(g) \implies pgcd(P, g) = 1 \implies P$ inversible. 
+                \end{itemize} 
+            \end{exampleblock}
+        \end{frame}
+
+        \begin{frame}{Exercice 07}{Question 03}
+            \begin{example}{}
+                Donc $(\mathbb{F}, +, \cdot)$ est un corps.
+            \end{example}
+        \end{frame}
+
+        \begin{frame}{Exercice 07}{Question 04}
+            \begin{alertblock}{Question 04}
+                Montrer que $\mathbb{F}$ est isomorphe à $\mathbb{F}_p[X]/(g)$.
+            \end{alertblock}
+            \begin{alertblock}{Solution}
+                Soit l'application : $\phi : \mathbb{F}_p[X] \to \mathbb{F}; P \mapsto P(\alpha)$. \pause
+                \begin{itemize}
+                    \item Surjection : soit $Y \in \mathbb{F} \implies Y = \sum_{k=0}^{m-1} a_k\alpha^k = P(\alpha)$ avec $P(X) = \sum_{k=0}^{m-1} a_kX^k \in \mathbb{F}_p[X]$. \pause
+                    \item $ker\phi = \{ P \in \mathbb{F}_p[X] / P(\alpha) = 0\} = (g)$.\pause En effet, $\forall P \in (g), P(X) = g(X)Q(x) \implies P(\alpha) = g(\alpha)Q(\alpha) = 0$ 
+                        \\ \pause  Et $\forall P \in \mathbb{F}_p[X], P(\alpha) = 0$
+                         alors $deg(P) > deg(g)$, on a $P(X) = g(X)Q(X) + R(X), deg(R) = 0$ ou $deg(R) < deg(g)$.\pause Alors $P(\alpha) = R(\alpha) = 0 \implies deg(R) = 0$ par minimalité de $g$. \pause D'où $R(X) = 0 \implies P(X) = g(X)Q(X) \in (g)$. 
+                \end{itemize} \pause
+                D'après le premier théorème d'isomorphisme, on a : $\mathbb{F}_p[X]/(g) \backsimeq \mathbb{F}$.
+            \end{alertblock}
+        \end{frame}
+
+        \begin{frame}{Exercice 07}{Question 05}
+            \begin{alertblock}{Question 05}
+                Donner de manière explicite $\mathbb{F}_{256}$.
+            \end{alertblock}
+            \begin{exampleblock}{Solution}
+                De ce qui précède, $\mathbb{F}_{256} = \mathbb{F}_{2^8}$ c'est l'ensemble des polynômes de degré inférieur ou égale à 7 et à coefficients dans $\mathbb{F}_2$. \\ \pause
+                
+                D'où $\mathbb{F}_{256} = \{\sum_{k=0}^{7} a_kx^k; a_k \in\{0,1\}\}$.
+            \end{exampleblock}
+        \end{frame}
+
+        \begin{frame}{Exercice 07}{question 06}
+            \begin{alertblock}{Question 06}
+                Expliciter un isomorphisme entre $\mathbb{F}_{81}$ et $\mathbb{F}_9[X]/(P)$, avec $P$ à déterminer.
+            \end{alertblock}
+            \begin{block}{Solution !!!}
+                Le polynôme $g(X) = X^4 + 1$ est unitaire et irréductible sur $\mathbb{F}_9$. De ce qui précède, $\mathbb{F}_{81}  \backsimeq \mathbb{F}_3[X]/(g)$.\pause
+                Et on a $ \tilde{\phi} : \mathbb{F}_3[X]/(g) \to \mathbb{F}_{81}; \tilde{f} \mapsto \tilde{f}(\alpha)$. \pause \\
+                avec $\alpha = X mod(g(X)) \implies g(\alpha) = 0 \implies  \alpha^4 = -1$. \\ \pause 
+                Soit $P(X) = X^2 + X + 1$, P est irréductible sur $\mathbb{F}_9$ donc $\mathbb{F}_9[X]/(P)$ est un corps. \\ \pause
+                Les éléments de $\mathbb{F}_9[X]/(P)$ sont des polynômes de la forme $aX + b$ avec $a,b \in \mathbb{F}_9$. Cherchons une racine de $g$ dans $\mathbb{F}_9[X]/(P)$ \pause \\
+                $g(aX + b) = (aX+b)^4 + 1 =  2a^3bX^3 + 6a^2b^2X^2 + 4ab^3X + b^4 - a^4 + 1 = 0 \implies b = 0$ et $ a^4 = 1$. On peut alors prendre $a=1 \implies aX+b = X mod(P(X)) = \beta$.
+            \end{block}
+        \end{frame}
+    \section{Exercice 08}
+        \begin{frame}{Exercice 08}{Question 01}
+            
+        \end{frame}
+\end{document}
