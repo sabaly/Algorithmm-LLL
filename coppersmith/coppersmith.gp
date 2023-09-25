@@ -99,7 +99,7 @@ Coppersmith(N, f, epsilon=0) = {
     if(epsilon != 0,
         X = floor(N^(1/d - epsilon)); 
         k=min(1/epsilon, log(N)),
-        X = floor(N^(1/d)); 
+        X = floor(N^(1/d)/2); 
         k=log(N)
     );
     m = floor(k/d);
@@ -110,11 +110,12 @@ Coppersmith(N, f, epsilon=0) = {
         
         /* calcul du determinant */
         det = X^(d*(m+1)*(d*m+d-1)/2)*N^(d*m*(m+1)/2);
+
         /* 2^(w/4)*det^(1/w) < N^m / sqrt(w)  or 2^(w/4)*sqrt(X^(w-1)) < sqrt(N^m) / sqrt(w)*/
-        if(2^(w/4)*det^(1/w) < N^m / sqrt(w),
-            print("ICI");
+        if(2^((w-1)/4)*det^(1/w) < N^m / sqrt(w),
             list_g = compute_g(N, f, m);
             base = compute_base(N, d, X, list_g);
+            print("Running LLL algorithm...");
             base_result = qflll(mattranspose(base), 3);
             base_result = mattranspose(base_result);
 
